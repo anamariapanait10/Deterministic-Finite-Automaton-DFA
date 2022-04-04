@@ -1,4 +1,6 @@
 
+g = open("data.out", "w")
+
 
 def read_data():
     number_of_states = None
@@ -10,19 +12,19 @@ def read_data():
     words = []
 
     with open("data.in") as f:
-        line = f.readline().split()
-        number_of_states = int(line[0])
-        number_of_transitions = int(line[1])
+        line_1 = f.readline().split()
+        number_of_states = int(line_1[0])
+        number_of_transitions = int(line_1[1])
 
         for i in range(number_of_transitions):
-            line = f.readline().split()
-            line[0] = int(line[0])
-            line[1] = int(line[1])
+            line_i = f.readline().split()
+            line_i[0] = int(line_i[0])
+            line_i[1] = int(line_i[1])
 
-            if line[0] in transitions:
-                transitions[line[0]][line[2]] = line[1]
+            if line_i[0] in transitions:
+                transitions[line_i[0]][line_i[2]] = line_i[1]
             else:
-                transitions[line[0]] = {line[2]: line[1]}
+                transitions[line_i[0]] = {line_i[2]: line_i[1]}
 
         line = f.readline().split()
         initial_state = int(line[0])
@@ -39,13 +41,12 @@ def read_data():
 
 
 def check_words(transitions, initial_state, final_states, words):
-    g = open("data.out", "w")
     for word in words:
-        check_dfa(word, transitions, initial_state, final_states, g)
+        check_dfa(word, transitions, initial_state, final_states)
     g.close()
 
 
-def check_dfa(word, transitions, initial_state, final_states, g):
+def check_dfa(word, transitions, initial_state, final_states):
     word_len = len(word)
     index = 0
     current_state = initial_state

@@ -27,7 +27,7 @@ def read_data():
         line = f.readline().split()
         initial_state = int(line[0])
         line = f.readline().split()
-        final_states = [int(x) for x in line]
+        final_states = [int(x) for x in line[1:]]
         line = f.readline().split()
         number_of_words = int(line[0])
 
